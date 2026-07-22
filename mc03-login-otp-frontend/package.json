@@ -1,0 +1,10 @@
+{
+  "name": "mc03-login-otp-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Lab MC03/MC04: frontend del login OTP (hexagonal) construido con un andamiaje propio y simplificado.",
+  "scripts": {
+    "test": "node --experimental-strip-types --test 'src/**/*.test.ts'"
+  }
+}
