@@ -1,0 +1,29 @@
+schema: spec-driven
+
+# Contexto del proyecto: lo primero que lee OpenSpec antes de generar artefactos.
+context: |
+  Stack: TypeScript, Node.js (node:test + --experimental-strip-types, sin build).
+  Arquitectura hexagonal con vertical slicing por módulo de negocio.
+  Capas: dominio (entidades y value objects, sin dependencias externas),
+  aplicación (casos de uso + puertos), infraestructura (adaptadores).
+  Regla de dependencia: dominio <- aplicación <- infraestructura.
+  Patrón Criteria: el dominio describe la búsqueda (campo/filtro/orden/página);
+  el adaptador traduce el criteria a la query concreta (SQL, Mongo o memoria).
+  Testing por capa: unit para dominio; casos de uso con repos in-memory (no mocks);
+  integración con base real para adaptadores de producción.
+  Naming en inglés; commits conventional; TDD (red -> green -> commit).
+
+# Reglas por artefacto: cómo quiero que OpenSpec genere cada uno.
+rules:
+  proposal:
+    - Incluí siempre una sección Non-goals para acotar el alcance.
+    - Referenciá los módulos afectados.
+  specs:
+    - Escenarios Given/When/Then por módulo, con casos límite y errores.
+  design:
+    - Mapeá cada componente a su capa hexagonal; justificá alternativas descartadas.
+  tasks:
+    - TDD (red -> green -> commit) en tareas con comportamiento.
+    - Tareas planas (sin TDD) para tipos y config.
+    - Ordená las tareas inside-out (dominio, luego aplicación, luego infraestructura).
+    - La última tarea siempre es un commit.
